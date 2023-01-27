@@ -1,11 +1,15 @@
 package sdf;
 
 import java.io.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         //prints welcome message
         System.out.println("Welcome.");
+
+        List<Double> results = new ArrayList<Double>();
 
         //console object to read input from command line
         Console console = System.console(); 
@@ -19,6 +23,7 @@ public class Main {
         //while loop required as the program will keep on looping until user keys in quit
         while (!((input.equalsIgnoreCase("exit")) )) {
             //continuously prompt the user to enter command
+            
             input = console.readLine("What operation would you like to perform? Type 'help' for more instructions. \n");
 
             //help function 
@@ -39,24 +44,29 @@ public class Main {
                 no1 = Double.parseDouble(inputArr[0]);
                 no2 = Double.parseDouble(inputArr[2]);
                 last = no1 + no2; 
+                results.add(last);
                 System.out.println(last);
                 
                 if (input.startsWith("$last +")) {
-                no1 = last;
-                no2 = Double.parseDouble(inputArr[2]);
-                last = no1 + no2;
-                System.out.println(last);
+                    no1 = results.get(results.size()-1);
+                    no2 = Double.parseDouble(inputArr[2]);
+                    last = no1 + no2;
+                    System.out.println(last);
+                }
             }
-            }
-
-            
-            
             
             if (input.contains("-")){
                 no1 = Double.parseDouble(inputArr[0]);
                 no2 = Double.parseDouble(inputArr[2]);
                 last = no1 - no2; 
                 System.out.println(last);
+
+                if (input.startsWith("$last -")) {
+                    no1 = results.get(results.size()-1);
+                    no2 = Double.parseDouble(inputArr[2]);
+                    last = no1 - no2;
+                    System.out.println(last);
+                }
             }
 
             if (input.contains("/")){
@@ -64,6 +74,13 @@ public class Main {
                 no2 = Double.parseDouble(inputArr[2]);
                 last = no1 / no2; 
                 System.out.println(last);
+
+                if (input.startsWith("$last /")) {
+                    no1 = results.get(results.size()-1);
+                    no2 = Double.parseDouble(inputArr[2]);
+                    last = no1 / no2;
+                    System.out.println(last);
+                }
             } 
             
             if (input.contains("*")){
@@ -71,8 +88,15 @@ public class Main {
                 no2 = Double.parseDouble(inputArr[2]);
                 last = no1 * no2; 
                 System.out.println(last);
+
+                if (input.startsWith("$last *")) {
+                    no1 = results.get(results.size()-1);
+                    no2 = Double.parseDouble(inputArr[2]);
+                    last = no1 * no2;
+                    System.out.println(last);
+                }
             }
-            
+
 
             } 
             
